@@ -1,0 +1,75 @@
+<form>
+    <div id="ID" class="mb-3">
+        <label for="practitionerId" class="form-label">ID:</label>
+        <input type="text" class="form-control" id="practitionerId" [(ngModel)]="practitioner.id" name="practitionerId"
+            readonly>
+    </div>
+    <div class="mb-3 form-check form-switch flex-row">
+        <label class="form-check-label" for="activeSwitch">Active</label>
+        <input class="form-check-input" type="checkbox" id="activeSwitch" [(ngModel)]="practitioner.active"
+            name="practitionerActive">
+    </div>
+    <div class="mb-3">
+        <label for="practitionerGender" class="form-label">Gender:</label>
+        <select class="form-select" id="practitionerGender" [(ngModel)]="practitioner.gender" name="practitionerGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+            <option value="unknown">Unknown</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="practitionerBirthDate" class="form-label">Birth Date:</label>
+        <input type="date" class="form-control" id="practitionerBirthDate" [(ngModel)]="practitioner.birthDate"
+            name="practitionerBirthDate">
+    </div>
+    <div *ngFor="let name of practitioner.name; let i=index" class="mb-3">
+        <label>Names</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Use</span>
+            <input type="text" class="form-control" [(ngModel)]="name.use" name="nameUse{{i}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Text</span>
+            <input type="text" class="form-control" [(ngModel)]="name.text" name="nameText{{i}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Label</span>
+            <input type="text" class="form-control" [(ngModel)]="name.family" name="nameFamily{{i}}">
+        </div>
+    </div>
+    <div *ngFor="let contact of practitioner.telecom; let i=index" class="mb-3">
+        <label>Contact</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text">System</span>
+            <select type="form-select" class="form-select" [(ngModel)]="contact.system" name="contactSystem{{i}}">
+                <option value="phone">Phone</option>
+                <option value="fax">Fax</option>
+                <option value="email">Email</option>
+                <option value="pager">Pager</option>
+                <option value="url">URL</option>
+                <option value="sms">SMS</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Value</span>
+            <input type="text" class="form-control" [(ngModel)]="contact.value" name="contactValue{{i}}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Use</span>
+            <select type="form-select" class="form-select" [(ngModel)]="contact.use " name="contactUse{{i}}">
+                <option value="home">Home</option>
+                <option value="work">Work</option>
+                <option value="temp">Temp</option>
+                <option value="old">Old</option>
+                <option value="mobile">Mobile</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+<div class="mt-3">
+    <button (click)="deletePractitioner()" type="button" class="btn btn-danger">Delete Practitioner</button>
+    <button (click)="updatePractitioner()" type="button" class="btn btn-warning">Save Changes</button>
+</div>

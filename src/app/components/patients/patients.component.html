@@ -1,0 +1,31 @@
+<div class="container my-3">
+    <table class="table table-hover table-striped table-responsive">
+        <thead class="table-info">
+            <tr>
+                <th>PatientenId</th>
+                <th>Name</th>
+                <th>Identifier</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let patient of patientArr$' (click)="selectPatient(patient)" style="cursor:pointer; margin: 0;">
+                <td>{{patient.id}}</td>
+                <td>
+                    <span *ngFor='let name$ of patient?.name'>{{name$?.given}}</span>
+                </td>
+                <td>
+                    <span *ngFor='let identifier of  patient.identifier'>{{identifier?.value}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <button (click)="createPatient()" type="button" class="btn btn-success">
+        <i class="bi bi-plus-lg"></i> Add Patient
+    </button>
+    <div *ngIf="(selectedPatient?.id)">
+        {{selectedPatient.id}}
+        <app-patient [id]="selectedPatient.id!" (patientModified)="onPatientModified($event)"></app-patient>
+    </div>
+</div>

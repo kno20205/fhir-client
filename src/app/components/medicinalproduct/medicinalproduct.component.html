@@ -1,0 +1,38 @@
+<form>
+    <div class="mb-3">
+        <label for="conditionId" class="form-label">ID:</label>
+        <input type="text" class="form-control" id="conditionId" [(ngModel)]="medicinalProduct.id" name="conditionId"
+            readonly>
+    </div>
+    <div class="mb-3">
+        <label for="conditionId" class="form-label">Text Div</label>
+        <div class="bg-light p-3 small">
+            <div [innerHTML]="medicinalProduct.text?.div" class="small"></div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="onSetPeriodStart" class="form-label">Version:</label>
+        <input class="form-control" id="onSetPeriodStart" [(ngModel)]="medicinalProduct.version"
+            name="onSetPeriodStart">
+    </div>
+
+    <div class="mg-3">
+        <label class="form-label">Names:</label>
+        <div class="d-flex align-items-start gap-2 mb-2" *ngFor="let name of medicinalProduct.name; let i = index">
+            <input type="text" class="form-control" [(ngModel)]="name.productName" name="name-{{i}}" placeholder="Name">
+            <button type="button" class="btn btn-danger" (click)="deleteName(i)">
+                <i class="bi bi-trash"></i>
+            </button>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addName()">
+            <i class="bi bi-plus-circle"></i> Add Name
+        </button>
+    </div>
+
+
+</form>
+<div class="mt-3">
+    <button (click)="deleteMedicinalProduct()" type="button" class="btn btn-danger">Delete Medicinal Product</button>
+    <button (click)="updateMedicinalProduct()" type="button" class="btn btn-warning">Save Changes</button>
+</div>

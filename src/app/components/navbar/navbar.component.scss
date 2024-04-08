@@ -1,0 +1,53 @@
+$nav-primary-color: #4a90e2; // Bright blue
+$nav-secondary-color: #ffffff; // White
+$nav-accent-color: #dedede; // gray
+$nav-font: "Helvetica Neue", sans-serif;
+
+.navbar-enhanced {
+  background-color: $nav-secondary-color;
+  font-family: $nav-font;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 2rem;
+
+    .navbar-brand-enhanced {
+      display: flex;
+      align-items: center;
+      .navbar-logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+      }
+      .brand-title {
+        color: $nav-primary-color;
+        font-size: 1.4rem;
+        font-weight: bold;
+      }
+    }
+
+    .navbar-info {
+      color: $nav-primary-color;
+      margin-left: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .custom-dropdown {
+      border: 2px solid $nav-primary-color;
+      background-color: $nav-secondary-color;
+      color: $nav-primary-color;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-info {
+    display: none;
+  }
+}

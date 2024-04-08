@@ -1,0 +1,31 @@
+<div class="container my-3">
+    <table class="table table-hover table-striped table-responsive">
+        <thead class="table-info">
+            <tr>
+                <th>PractitionerId</th>
+                <th>Name</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let practitioner of practitionerArr$' (click)="selectPractitioner(practitioner)"
+                style="cursor:pointer; margin: 0;">
+                <td>{{practitioner.id}}</td>
+                <td>
+                    <p *ngFor='let name$ of practitioner.name'>{{name$?.family}}</p>
+                </td>
+                <td>{{practitioner.gender}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<button (click)="createPractitioner()" type="button" class="btn btn-success">Add Practitioner</button>
+
+<div *ngIf="(selectedPractitioner?.id)">
+    {{selectedPractitioner.id}}
+    <app-practitioner [id]="selectedPractitioner.id!"
+        (practitionerModified)="onPractitionerModified($event)"></app-practitioner>
+
+</div>

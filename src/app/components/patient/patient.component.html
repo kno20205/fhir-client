@@ -1,0 +1,59 @@
+<form>
+  <!-- Patient ID -->
+  <div class="mb-3">
+    <label for="patientId" class="form-label">ID:</label>
+    <input type="text" class="form-control" id="patientId" [(ngModel)]="patient.id" name="patientId" readonly>
+  </div>
+
+  <!-- Patient Active Status as a Toggle Switch -->
+  <div class="mb-3 form-check form-switch">
+    <input class="form-check-input" type="checkbox" id="activeSwitch" [(ngModel)]="patient.active" name="patientActive">
+    <label class="form-check-label" for="activeSwitch">Active</label>
+  </div>
+
+  <!-- Patient Gender -->
+  <div class="mb-3">
+    <label for="patientGender" class="form-label">Gender:</label>
+    <select class="form-select" id="patientGender" [(ngModel)]="patient.gender" name="patientGender">
+      <option *ngFor="let gender of genderOptions" [value]="gender">
+        {{ gender | titlecase }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Patient Birth Date as a Date Picker -->
+  <div class="mb-3">
+    <label for="patientBirthDate" class="form-label">Birth Date:</label>
+    <input type="date" class="form-control" id="patientBirthDate" [(ngModel)]="patient.birthDate"
+      name="patientBirthDate">
+  </div>
+
+  <!-- Patient Deceased Status -->
+  <div class="mb-3">
+    <label for="patientDeceased" class="form-label">Deceased:</label>
+    <input class="form-check-input" type="checkbox" id="deceasedSwitch" [(ngModel)]="patient.deceasedBoolean"
+      name="patientDeceased">
+  </div>
+
+  <!-- Patient Names -->
+  <div *ngFor="let name of patient.name; let i=index" class="mb-3">
+    <label>Names</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Use</span>
+      <input type="text" class="form-control" [(ngModel)]="name.use" name="nameUse{{i}}">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Text</span>
+      <input type="text" class="form-control" [(ngModel)]="name.text" name="nameText{{i}}">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Label</span>
+      <input type="text" class="form-control" [(ngModel)]="name.family" name="nameFamily{{i}}">
+    </div>
+  </div>
+</form>
+
+<div class="mt-3">
+  <button (click)="deletePatient()" type="button" class="btn btn-danger">Delete Patient</button>
+  <button (click)="updatePatient()" type="button" class="btn btn-warning">Save Changes</button>
+</div>

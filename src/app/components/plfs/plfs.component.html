@@ -1,0 +1,30 @@
+<div class="container my-3">
+    <table class="table table-hover table-striped table-responsive">
+        <thead class="table-info">
+            <tr>
+                <th>Id</th>
+                <th>Combining</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let plf of plfArr$' (click)="selectPlf(plf)" style="cursor:pointer; margin: 0;">
+                <td>{{plf.id}}</td>
+                <td>{{plf.combining}}</td>
+                <td>
+                    {{plf.status}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <button (click)="createPlf()" type="button" class="btn btn-success">
+        <i class="bi bi-plus-lg"></i> Add Plf1_3
+    </button>
+
+    <div *ngIf="selectedPlf.id">
+        {{selectedPlf.id}}
+        <app-plf [id]="selectedPlf.id" (plfModified)="onPlfModified($event)"></app-plf>
+    </div>
+</div>

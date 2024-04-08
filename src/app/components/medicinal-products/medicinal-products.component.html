@@ -1,0 +1,27 @@
+<div class="container my-3">
+    <table class="table table-hover table-striped table-responsive">
+        <thead class="table-info">
+            <tr>
+                <th>Id</th>
+                <th>Version</th>
+                <th>Identifier value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let medicinalProduct of medicinalProductsArr$"
+                (click)="selectMedicinalProduct(medicinalProduct)" style="cursor:pointer; margin: 0;">
+                <td>{{medicinalProduct.id}}</td>
+                <td>{{medicinalProduct.version}}</td>
+                <td>{{medicinalProduct.identifier?.[0]?.value}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button (click)="createMedicinalProduct()" type="button" class="btn btn-success"><i class="bi bi-plus-lg"></i> Add
+        MedicinalProduct</button>
+
+    <div *ngIf="selectedMedicinalProduct.id">
+        <app-medicinalproduct [id]="selectedMedicinalProduct.id"
+            (medicinalProductModified)="onMedicinalProductModified($event)"></app-medicinalproduct>
+    </div>
+</div>

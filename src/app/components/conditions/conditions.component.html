@@ -1,0 +1,34 @@
+<div class=" my-3">
+    <table class="table table-hover table-striped table-responsive">
+        <thead class="table-info">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Clinical Status</th>
+                <th>Verification Status</th>
+                <th>Subject</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let condition of conditionArr$' (click)="selectCondition(condition)"
+                style="cursor:pointer; margin: 0;">
+                <td>{{ condition.id }}</td>
+                <td>{{ condition.code?.text }}</td>
+                <td>{{ condition.clinicalStatus.coding?.[0]?.code }}</td>
+                <td>{{ condition.verificationStatus?.coding?.[0]?.code }}</td>
+                <td>{{ condition.subject.reference }}</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+    <button (click)="createCondition()" type="button" class="btn btn-success">
+        <i class="bi bi-plus-lg"></i> Add Condition
+    </button>
+    <div *ngIf="(selectedCondition?.id)">
+        {{selectedCondition.id}}
+        <app-condition [id]="selectedCondition.id || ''"
+            (conditionModified)="onConditionModified($event)"></app-condition>
+    </div>
+</div>

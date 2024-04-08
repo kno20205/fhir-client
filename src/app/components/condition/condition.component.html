@@ -1,0 +1,73 @@
+<br>
+<button type="button" class="btn btn-info mb-3 btn-sm" (click)="toggleView()">
+    {{ showJson ? 'Show Form' : 'Show JSON' }}
+</button>
+<div *ngIf="!showJson">
+    <form>
+        <div class="mb-3">
+            <label for="conditionId" class="form-label">ID:</label>
+            <input type="text" class="form-control" id="conditionId" [(ngModel)]="condition.id" name="conditionId"
+                readonly>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="onSetPeriodStart" class="form-label">Onset Period Start:</label>
+            <input type="datetime-local" class="form-control" id="onSetPeriodStart" [(ngModel)]="period.start"
+                name="onSetPeriodStart">
+        </div>
+        <div class="mb-3">
+            <label for="onSetPeriodEnd" class="form-label">Onset Period End:</label>
+            <input type="datetime-local" class="form-control" id="onSetPeriodEnd" [(ngModel)]="period.end"
+                name="onSetPeriodEnd">
+        </div>
+        <div class="mb-3">
+            <label for="clinicalStatus" class="form-label">Clinical Status:</label>
+            <select class="form-control" id="clinicalStatus" [(ngModel)]="condition.clinicalStatus.coding![0].code"
+                name="clinicalStatus">
+                <option *ngFor="let status of clinicalStatusOptions" [value]="status.value">
+                    {{ status.display }}
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="conditionCode" class="form-label">Clinical Status Text:</label>
+            <input type="text" class="form-control" id="clinicalStatusText" [(ngModel)]="condition.clinicalStatus.text"
+                name="clinicalStatusText">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Notes:</label>
+            <div *ngFor="let note of notes; let i = index" class="d-flex align-items-start gap-2 mb-2">
+                <input type="text" class="form-control" style="width: 30%;" [(ngModel)]="note.authorString"
+                    name="noteAuthor-{{i}}" placeholder="Author">
+                <input type="text" class="form-control flex-grow-1" style="width: 50%;" [(ngModel)]="note.text"
+                    name="noteText-{{i}}" placeholder="Enter note here">
+                <div class="form-control bg-light text-secondary border " style="width: 15%;" readonly>
+                    {{ note.time | date:'d.MM.yyyy H:mm' }}
+                </div>
+
+
+                <button type="button" class="btn btn-danger" style="width: 5%;" (click)="deleteNote(i)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" (click)="addNote()">
+                <i class="bi bi-plus-circle"></i> Add Note
+            </button>
+        </div>
+    </form>
+</div>
+
+
+<div *ngIf="showJson" class="mb-3">
+    <textarea class="form-control" [(ngModel)]="jsonString" rows="30"
+        style="font-family: monospace; font-size: 0.9rem; background-color: #f8f9fa; border: 1px solid #ced4da; border-radius: 0.25rem;"></textarea>
+</div>
+
+
+
+<div class="mt-3">
+    <button (click)="deleteCondition()" type="button" class="btn btn-danger">Delete Condition</button>
+    <button (click)="updateCondition()" type="button" class="btn btn-warning">Save Changes</button>
+</div>
