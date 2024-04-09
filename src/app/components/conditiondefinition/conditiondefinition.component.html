@@ -1,0 +1,33 @@
+<form>
+    <div class="mb-3">
+        <label for="conditionDefintionId" class="form-label">ID:</label>
+        <input type="text" class="form-control" id="conditionDefintionId" [(ngModel)]="conditionDefinition.id"
+            name="conditionDefintionId" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="conditionDefintionId" class="form-label">Text Div</label>
+        <div class="bg-light p-3 small">
+            <div [innerHTML]="conditionDefinition.text?.div" class="small"></div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Name:</label>
+        <input type="text" class="form-control" [(ngModel)]="conditionDefinition.name" name="conditionDefinitionName">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Experimental:</label>
+        <input type="text" class="form-control" id="" [(ngModel)]="conditionDefinition.experimental"
+            name="conditionDefinitionNameExperimental">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Code Coding Code:</label>
+        <input type="text" class="form-control" id="" [value]="conditionDefinition.code.coding?.[0]?.code"
+            name="conditionDefinitionCodeCodingCode">
+    </div>
+
+
+</form>
+<div class="mt-3">
+    <button (click)="deleteConditionDefinition()" type="button" class="btn btn-danger">Delete Medicinal Product</button>
+    <button (click)="updateConditionDefinition()" type="button" class="btn btn-warning">Save Changes</button>
+</div>

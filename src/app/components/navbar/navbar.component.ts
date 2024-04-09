@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
     { path: '/practitioners', displayName: 'Practitioners' },
     { path: '/conditions', displayName: 'Condition' },
     { path: '/medicinalproduct', displayName: 'Medicinal Product' },
+    { path: '/conditiondefinitions', displayName: 'Condition Definition' },
   ];
 
   constructor(private router: Router) {}

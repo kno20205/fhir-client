@@ -6,4 +6,5 @@ export const apiEndpoints = {
   plf: `${BASE_URL}/plf1_3`,
   condition: `${BASE_URL}/condition`,
   medicinalproduct: `${BASE_URL}/medicinalproduct`,
+  conditiondefinition: `${BASE_URL}/conditiondefinition`,
 };

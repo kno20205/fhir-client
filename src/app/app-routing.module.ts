@@ -6,6 +6,7 @@ import { PractitionerComponent } from './components/practitioner/practitioner.co
 import { PlfsComponent } from './components/plfs/plfs.component';
 import { ConditionsComponent } from './components/conditions/conditions.component';
 import { MedicinalProductsComponent } from './components/medicinal-products/medicinal-products.component';
+import { ConditiondefinitionsComponent } from './components/conditiondefinitions/conditiondefinitions.component';
 
 const routes: Routes = [
   { path: '', title: 'Patienten', component: PatientsComponent },
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'medicinalproduct',
     title: 'MedicinalProduct',
     component: MedicinalProductsComponent,
+  },
+  {
+    path: 'conditiondefinitions',
+    title: 'Condition Definitions',
+    component: ConditiondefinitionsComponent,
   },
 ];
 

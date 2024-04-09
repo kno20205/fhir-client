@@ -1,0 +1,28 @@
+<div class="container my-3">
+    <table class="table table-hover table-striped table-responsive">
+        <thead class="table-info">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Experimental</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let conditiondefinition of conditionDefinitionsArr$"
+                (click)="selectConditionDefinition(conditiondefinition)" style="cursor:pointer; margin: 0;">
+                <td>{{conditiondefinition.id}}</td>
+                <td>{{conditiondefinition.name}}</td>
+                <td>{{conditiondefinition.experimental}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button (click)="createConditionDefinition()" type="button" class="btn btn-success"><i class="bi bi-plus-lg"></i>
+        Add Example</button>
+
+    <div *ngIf="selectedConditionDefinition.id">
+        {{selectedConditionDefinition.id}}
+        <app-conditiondefinition [id]="selectedConditionDefinition.id"
+            (conditionDefinitionModified)="onConditionDefinitionModified($event)"></app-conditiondefinition>
+    </div>
+</div>
